@@ -3,53 +3,54 @@ using UnityEngine;
 
 public class PlayerControlled : MonoBehaviour
 {
-    public float moveSpeed = 10f;
-
-    public bool onGround = true;
-    public float groundDrag = 1;
-    
-    private float _moveCooldown;
-    private float _boostCooldown;
-    public float maxBoostCooldown = 2;
-    public float boostSpeed = 2;
-
-    private Rigidbody _rb;
-    private float _hMove;
-    private float _vMove;
-    private bool _dashPress;
-
+    [Header("References")]
     public Transform orientation;
     public Transform playerModel;
     public Camera cam;
     public Transform camHolder;
+    private Rigidbody _rb;
 
+    [Header("Movement")]
+    public float moveSpeed = 10f;
+    public bool onGround = true;
+    public float groundDrag = 1;
     public float rotationSpeed = 50;
-    
+    private float _hMove;
+    private float _vMove;
+
+    [Header("Dashing")]
+    public float dashForce = 20;
+    public float dashForceUp = 2;
+    public float dashDuration = 0.25f;
+    private bool _dashing = false;
+    private float _dashCdTimer;
+    public float dashCd = 2;
+    public float dashSpeed = 15f;
+    private bool _dashPress;
     
     // Start is called before the first frame update
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
         _rb.freezeRotation = true;
-        _dashPress = Input.GetKey(KeyCode.Space);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (_moveCooldown > 0)
+        if (_dashCdTimer > 0)
         {
-            _moveCooldown -= Time.deltaTime;
-        }
-        if (_boostCooldown > 0)
-        {
-            _boostCooldown -= Time.deltaTime;
+            _dashCdTimer -= Time.deltaTime;
         }
         
-
+        
         GetInputs();
         CapSpeed();
         UpdateDrag();
+        if (_dashPress && !_dashing)
+        {
+            Dash();
+        }
 
         cam.transform.position = camHolder.position;
     }
@@ -64,6 +65,25 @@ public class PlayerControlled : MonoBehaviour
         MovePlayer();
     }
 
+    private void Dash()
+    {
+        if (_dashCdTimer > 0)
+        {
+            return;
+        }
+
+        _dashCdTimer = dashCd;
+        _dashing = true;
+        var forceToApply = playerModel.forward * dashForce + playerModel.up * dashForceUp;
+        _rb.AddForce(forceToApply, ForceMode.Impulse);
+        Invoke(nameof(ResetDash), dashDuration);
+    }
+
+    private void ResetDash()
+    {
+        _dashing = false;
+    }
+    
     private void MovePlayer()
     {
         if (Math.Abs(_hMove) + Math.Abs(_vMove) > 0)
@@ -73,11 +93,6 @@ public class PlayerControlled : MonoBehaviour
             
             var inputDir = (orientation.forward * _vMove + orientation.right * _hMove).normalized;
             _rb.AddForce(inputDir * moveSpeed, ForceMode.Force);
-            if (_dashPress && _boostCooldown <= 0)
-            {
-                _boostCooldown = maxBoostCooldown;
-                _rb.AddForce(inputDir * boostSpeed, ForceMode.Force);
-            }
 
             playerModel.forward = Vector3.Slerp(playerModel.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
         }
@@ -86,9 +101,16 @@ public class PlayerControlled : MonoBehaviour
     private void CapSpeed()
     {
         var flatVelocity = new Vector3(_rb.velocity.x, 0, _rb.velocity.z);
-        if (flatVelocity.magnitude > moveSpeed)
+
+        var speedCap = moveSpeed;
+        if (_dashing)
         {
-            var cappedSpeed = flatVelocity.normalized * moveSpeed;
+            speedCap = dashSpeed;
+        }
+        if (flatVelocity.magnitude > speedCap)
+        {
+            var cappedSpeed = flatVelocity.normalized * speedCap;
+            cappedSpeed = Vector3.Lerp(flatVelocity, cappedSpeed, Time.deltaTime);
             _rb.velocity = new Vector3(cappedSpeed.x, _rb.velocity.y, cappedSpeed.z);
         }
     }
@@ -97,5 +119,7 @@ public class PlayerControlled : MonoBehaviour
     {
         _hMove = Input.GetAxisRaw("Horizontal");
         _vMove = Input.GetAxisRaw("Vertical");
+        _dashPress = Input.GetKey(KeyCode.Space);
     }
+
 }

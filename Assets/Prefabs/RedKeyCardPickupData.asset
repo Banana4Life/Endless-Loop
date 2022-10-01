@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37c857d84ea04f529046074535c7213e, type: 3}
+  m_Name: RedKeyCardPickupData
+  m_EditorClassIdentifier: 
+  itemName: redKeyCard
+  model: {fileID: 8298331226076796391, guid: 725f88ed70d21d7559690d5017e93a88, type: 3}
