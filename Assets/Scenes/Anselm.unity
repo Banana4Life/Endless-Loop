@@ -168,7 +168,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 431092828}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: ed87e3a674fc57f8aae29008dc5907d1, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
@@ -12475,6 +12475,11 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1609972062}
+    - target: {fileID: 1894229064567736176, guid: 3b3898ad227665821981117d4e669ae3,
+        type: 3}
+      propertyPath: m_Mass
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 1894229064567736177, guid: 3b3898ad227665821981117d4e669ae3,
         type: 3}
       propertyPath: m_RootOrder
@@ -12534,6 +12539,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1894229064860426316, guid: 3b3898ad227665821981117d4e669ae3,
+        type: 3}
+      propertyPath: dissolveSpeed
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

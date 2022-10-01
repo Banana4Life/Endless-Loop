@@ -198,16 +198,21 @@ MonoBehaviour:
   playerModel: {fileID: 1894229064860426318}
   cam: {fileID: 0}
   camHolder: {fileID: 1894229063222089926}
-  moveSpeedAcc: 30
-  moveSpeedCap: 10
+  moveSpeedAcc: 35
+  moveSpeedCap: 12
+  rotationSpeed: 10
   onGround: 1
   groundDrag: 5
-  rotationSpeed: 10
-  dashAcc: 30
-  dashAccUp: 5
+  airDrag: 2
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 2147483647
+  playerHeight: 0
+  dashAcc: 20
+  dashAccUp: 4
   dashDuration: 0.25
   dashCd: 0.75
-  dashSpeedCap: 15
+  dashSpeedCap: 20
 --- !u!54 &1894229064567736176
 Rigidbody:
   m_ObjectHideFlags: 0

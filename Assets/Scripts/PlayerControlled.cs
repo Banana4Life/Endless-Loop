@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerControlled : MonoBehaviour
@@ -13,11 +14,17 @@ public class PlayerControlled : MonoBehaviour
     [Header("Movement")]
     public float moveSpeedAcc = 10f;
     public float moveSpeedCap = 10f;
-    public bool onGround = true;
-    public float groundDrag = 1;
     public float rotationSpeed = 50;
     private float _hMove;
     private float _vMove;
+
+    [Header("Ground")] 
+    public bool onGround = true;
+    public float groundDrag = 5;
+    public float airDrag = 2;
+    public LayerMask whatIsGround;
+    public float playerHeight;
+ 
 
     [Header("Dashing")]
     public float dashAcc = 30;
@@ -34,11 +41,15 @@ public class PlayerControlled : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _rb.freezeRotation = true;
+        playerHeight = playerModel.GetComponent<CapsuleCollider>().height;
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+        onGround = Physics.Raycast(playerModel.position, Vector3.down, 0.2f + playerHeight / 2, whatIsGround);
+        
         if (_dashCdTimer > 0)
         {
             _dashCdTimer -= Time.deltaTime;
@@ -48,22 +59,29 @@ public class PlayerControlled : MonoBehaviour
         GetInputs();
         CapSpeed();
         UpdateDrag();
-        if (_dashPress && !_dashing)
-        {
-            Dash();
-        }
+  
 
         cam.transform.position = camHolder.position;
     }
 
     private void UpdateDrag()
     {
-        _rb.drag = onGround ? groundDrag : 0;
+        _rb.drag = onGround ? groundDrag : airDrag;
     }
 
     private void FixedUpdate()
     {
-        MovePlayer();
+        if (onGround)
+        {
+            if (_dashPress && !_dashing)
+            {
+                Dash();
+            }
+            else
+            {
+                MovePlayer();
+            }
+        }
     }
 
     private void Dash()
