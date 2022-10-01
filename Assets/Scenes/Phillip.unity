@@ -1149,7 +1149,7 @@ MeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1480536313}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
@@ -2521,9 +2521,17 @@ MonoBehaviour:
   m_Mesh: {fileID: 837192626}
   m_VersionIndex: 2958
   m_IsSelectable: 1
-  m_SelectedFaces: 
-  m_SelectedEdges: []
-  m_SelectedVertices: 
+  m_SelectedFaces: 1b000000
+  m_SelectedEdges:
+  - a: 123
+    b: 124
+  - a: 122
+    b: 123
+  - a: 124
+    b: 121
+  - a: 121
+    b: 122
+  m_SelectedVertices: 7b0000007c0000007a00000079000000
 --- !u!4 &1480536319
 Transform:
   m_ObjectHideFlags: 0
