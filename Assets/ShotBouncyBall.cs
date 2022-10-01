@@ -8,13 +8,14 @@ public class ShotBouncyBall : MonoBehaviour
     public GameObject projectilePrefab;
     public float impulseStrength = 10f;
     public float height = 0.9f;
+    public float offset = 5;
     private bool _didShoot = false;
 
     // Update is called once per frame
     void Update()
     {
         bool shoot;
-        var shootKeyDown = Input.GetButtonDown("Jump");
+        var shootKeyDown = Input.GetButtonDown("Fire1");
         if (shootKeyDown && _didShoot)
         {
             shoot = false;
@@ -36,15 +37,15 @@ public class ShotBouncyBall : MonoBehaviour
 
         if (shoot)
         {
-            Debug.LogWarning("shot!");
             var projectile = Instantiate(projectilePrefab);
             var playerRot = transform.rotation.eulerAngles;
             var playerPos = transform.position;
 
-            projectile.transform.position = new Vector3(playerPos.x, height, playerPos.z);
+
+            var forward = transform.forward;
+            projectile.transform.position = new Vector3(playerPos.x, height, playerPos.z) + forward * offset;
             var body = projectile.GetComponentInChildren<Rigidbody>();
-            var impulseDirection = new Vector3(0, playerRot.y, 0);
-            body.AddForce(impulseDirection, ForceMode.Impulse);
+            body.AddForce(forward * impulseStrength, ForceMode.Impulse);
         }
     }
 }
