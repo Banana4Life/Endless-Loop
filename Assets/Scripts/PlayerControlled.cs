@@ -1,5 +1,4 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerControlled : MonoBehaviour
@@ -7,7 +6,7 @@ public class PlayerControlled : MonoBehaviour
     [Header("References")]
     public Transform orientation;
     public Transform playerModel;
-    public Camera cam;
+    private Camera _cam;
     public Transform camHolder;
     private Rigidbody _rb;
 
@@ -23,7 +22,7 @@ public class PlayerControlled : MonoBehaviour
     public float groundDrag = 5;
     public float airDrag = 2;
     public LayerMask whatIsGround;
-    public float playerHeight;
+    private CapsuleCollider _playerCapsule;
  
 
     [Header("Dashing")]
@@ -39,16 +38,16 @@ public class PlayerControlled : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _cam = Camera.main;
         _rb = GetComponent<Rigidbody>();
         _rb.freezeRotation = true;
-        playerHeight = playerModel.GetComponent<CapsuleCollider>().height;
+        _playerCapsule = playerModel.GetComponent<CapsuleCollider>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        onGround = Physics.Raycast(playerModel.position, Vector3.down, 0.2f + playerHeight / 2, whatIsGround);
+        onGround = Physics.Raycast(playerModel.position + _playerCapsule.center, Vector3.down, 0.2f + _playerCapsule.height / 2f, whatIsGround);
         
         if (_dashCdTimer > 0)
         {
@@ -61,7 +60,7 @@ public class PlayerControlled : MonoBehaviour
         UpdateDrag();
   
 
-        cam.transform.position = camHolder.position;
+        _cam.transform.position = camHolder.position;
     }
 
     private void UpdateDrag()
@@ -108,7 +107,7 @@ public class PlayerControlled : MonoBehaviour
     {
         if (Math.Abs(_hMove) + Math.Abs(_vMove) > 0)
         {
-            var camDir = cam.transform.forward;
+            var camDir = _cam.transform.forward;
             orientation.forward = new Vector3(camDir.x, 0, camDir.z);
             
             var inputDir = (orientation.forward * _vMove + orientation.right * _hMove).normalized;
