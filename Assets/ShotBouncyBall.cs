@@ -48,7 +48,7 @@ public class ShotBouncyBall : MonoBehaviour
             _projectile.transform.position = new Vector3(playerPos.x, height, playerPos.z) + forward * offset;
             var body = _projectile.GetComponentInChildren<Rigidbody>();
             body.AddForce(forward * impulseStrength, ForceMode.Impulse);
-            body.AddTorque(Vector3.up * projectileRotationImpulse, ForceMode.Impulse);
+            // body.AddTorque(Vector3.up * projectileRotationImpulse, ForceMode.Impulse);
             
             Invoke(nameof(KillProjectile), projectileLifetime);
         }
