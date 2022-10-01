@@ -10,6 +10,9 @@ public class ShotBouncyBall : MonoBehaviour
     public float height = 0.9f;
     public float offset = 5;
     private bool _didShoot = false;
+    private GameObject _projectile = null;
+    public float projectileLifetime = 5f;
+    public float projectileRotationImpulse = 5f;
 
     // Update is called once per frame
     void Update()
@@ -35,17 +38,28 @@ public class ShotBouncyBall : MonoBehaviour
             shoot = false;
         }
 
-        if (shoot)
+        if (shoot && !_projectile)
         {
-            var projectile = Instantiate(projectilePrefab);
-            var playerRot = transform.rotation.eulerAngles;
+            _projectile = Instantiate(projectilePrefab);
             var playerPos = transform.position;
 
 
             var forward = transform.forward;
-            projectile.transform.position = new Vector3(playerPos.x, height, playerPos.z) + forward * offset;
-            var body = projectile.GetComponentInChildren<Rigidbody>();
+            _projectile.transform.position = new Vector3(playerPos.x, height, playerPos.z) + forward * offset;
+            var body = _projectile.GetComponentInChildren<Rigidbody>();
             body.AddForce(forward * impulseStrength, ForceMode.Impulse);
+            body.AddTorque(Vector3.up * projectileRotationImpulse, ForceMode.Impulse);
+            
+            Invoke(nameof(KillProjectile), projectileLifetime);
+        }
+    }
+
+    private void KillProjectile()
+    {
+        if (_projectile)
+        {
+            Destroy(_projectile);
+            _projectile = null;
         }
     }
 }
