@@ -20,6 +20,8 @@ public class PlayerControlled : MonoBehaviour
 
     public Transform orientation;
     public Transform playerModel;
+    public Camera cam;
+    public Transform camHolder;
 
     public float rotationSpeed = 50;
     
@@ -48,6 +50,8 @@ public class PlayerControlled : MonoBehaviour
         GetInputs();
         CapSpeed();
         UpdateDrag();
+
+        cam.transform.position = camHolder.position;
     }
 
     private void UpdateDrag()
@@ -64,13 +68,17 @@ public class PlayerControlled : MonoBehaviour
     {
         if (Math.Abs(_hMove) + Math.Abs(_vMove) > 0)
         {
-            var inputDir = new Vector3(_hMove, 0, _vMove).normalized;
+            var camDir = cam.transform.forward;
+            orientation.forward = new Vector3(camDir.x, 0, camDir.z);
+            
+            var inputDir = (orientation.forward * _vMove + orientation.right * _hMove).normalized;
             _rb.AddForce(inputDir * moveSpeed, ForceMode.Force);
             if (_dashPress && _boostCooldown <= 0)
             {
                 _boostCooldown = maxBoostCooldown;
                 _rb.AddForce(inputDir * boostSpeed, ForceMode.Force);
             }
+
             playerModel.forward = Vector3.Slerp(playerModel.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
         }
     }
