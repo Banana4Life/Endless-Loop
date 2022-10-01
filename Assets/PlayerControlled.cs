@@ -3,21 +3,35 @@ using UnityEngine;
 
 public class PlayerControlled : MonoBehaviour
 {
-    public float speed = 10f;
-    public float gridSpeed = 2.5f;
+    public float moveSpeed = 10f;
 
-    public float maxMoveCooldown = 1;
-
-    public bool gridMove;
-
+    public bool onGround = true;
+    public float groundDrag = 1;
+    
     private float _moveCooldown;
+    private float _boostCooldown;
+    public float maxBoostCooldown = 2;
+    public float boostSpeed = 2;
 
-    private Rigidbody _rigidbody;
+    private Rigidbody _rb;
+    private float _hMove;
+    private float _vMove;
+    private bool _dashPress;
 
+    public Transform orientation;
+    public Transform playerModel;
+    public Camera cam;
+    public Transform camHolder;
+
+    public float rotationSpeed = 50;
+    
+    
     // Start is called before the first frame update
     void Start()
     {
-        _rigidbody = GetComponent<Rigidbody>();
+        _rb = GetComponent<Rigidbody>();
+        _rb.freezeRotation = true;
+        _dashPress = Input.GetKey(KeyCode.Space);
     }
 
     // Update is called once per frame
@@ -27,32 +41,61 @@ public class PlayerControlled : MonoBehaviour
         {
             _moveCooldown -= Time.deltaTime;
         }
-
-        var hMove = Input.GetAxisRaw("Horizontal");
-        var vMove = Input.GetAxisRaw("Vertical");
-
-        if (gridMove)
+        if (_boostCooldown > 0)
         {
-            if (Math.Abs(hMove) + Math.Abs(vMove) > 0)
-            {
-                if (_moveCooldown <= 0)
-                {
-                    _moveCooldown = maxMoveCooldown;
-                    transform.position += new Vector3(Math.Sign(hMove), 0, Math.Sign(vMove)) * gridSpeed;
-                }
-            }
+            _boostCooldown -= Time.deltaTime;
         }
-        else
+        
+
+        GetInputs();
+        CapSpeed();
+        UpdateDrag();
+
+        cam.transform.position = camHolder.position;
+    }
+
+    private void UpdateDrag()
+    {
+        _rb.drag = onGround ? groundDrag : 0;
+    }
+
+    private void FixedUpdate()
+    {
+        MovePlayer();
+    }
+
+    private void MovePlayer()
+    {
+        if (Math.Abs(_hMove) + Math.Abs(_vMove) > 0)
         {
-            if (Math.Abs(hMove) + Math.Abs(vMove) > 0)
-            {
-                _rigidbody.AddForce(new Vector3(hMove, 0, vMove).normalized * speed);    
-            }
-            else
-            {
-                _rigidbody.AddForce(new Vector3(hMove, 0, vMove).normalized * speed);
-            }
+            var camDir = cam.transform.forward;
+            orientation.forward = new Vector3(camDir.x, 0, camDir.z);
             
+            var inputDir = (orientation.forward * _vMove + orientation.right * _hMove).normalized;
+            _rb.AddForce(inputDir * moveSpeed, ForceMode.Force);
+            if (_dashPress && _boostCooldown <= 0)
+            {
+                _boostCooldown = maxBoostCooldown;
+                _rb.AddForce(inputDir * boostSpeed, ForceMode.Force);
+            }
+
+            playerModel.forward = Vector3.Slerp(playerModel.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
         }
+    }
+
+    private void CapSpeed()
+    {
+        var flatVelocity = new Vector3(_rb.velocity.x, 0, _rb.velocity.z);
+        if (flatVelocity.magnitude > moveSpeed)
+        {
+            var cappedSpeed = flatVelocity.normalized * moveSpeed;
+            _rb.velocity = new Vector3(cappedSpeed.x, _rb.velocity.y, cappedSpeed.z);
+        }
+    }
+
+    private void GetInputs()
+    {
+        _hMove = Input.GetAxisRaw("Horizontal");
+        _vMove = Input.GetAxisRaw("Vertical");
     }
 }
