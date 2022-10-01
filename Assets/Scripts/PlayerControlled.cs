@@ -11,7 +11,8 @@ public class PlayerControlled : MonoBehaviour
     private Rigidbody _rb;
 
     [Header("Movement")]
-    public float moveSpeed = 10f;
+    public float moveSpeedAcc = 10f;
+    public float moveSpeedCap = 10f;
     public bool onGround = true;
     public float groundDrag = 1;
     public float rotationSpeed = 50;
@@ -19,13 +20,13 @@ public class PlayerControlled : MonoBehaviour
     private float _vMove;
 
     [Header("Dashing")]
-    public float dashForce = 20;
-    public float dashForceUp = 2;
+    public float dashAcc = 30;
+    public float dashAccUp = 5;
     public float dashDuration = 0.25f;
     private bool _dashing = false;
     private float _dashCdTimer;
     public float dashCd = 2;
-    public float dashSpeed = 15f;
+    public float dashSpeedCap = 15f;
     private bool _dashPress;
     
     // Start is called before the first frame update
@@ -74,7 +75,8 @@ public class PlayerControlled : MonoBehaviour
 
         _dashCdTimer = dashCd;
         _dashing = true;
-        var forceToApply = playerModel.forward * dashForce + playerModel.up * dashForceUp;
+        var rbMass = _rb.mass;
+        var forceToApply = dashAcc * rbMass * playerModel.forward + dashAccUp * rbMass * playerModel.up;
         _rb.AddForce(forceToApply, ForceMode.Impulse);
         Invoke(nameof(ResetDash), dashDuration);
     }
@@ -92,7 +94,7 @@ public class PlayerControlled : MonoBehaviour
             orientation.forward = new Vector3(camDir.x, 0, camDir.z);
             
             var inputDir = (orientation.forward * _vMove + orientation.right * _hMove).normalized;
-            _rb.AddForce(inputDir * moveSpeed, ForceMode.Force);
+            _rb.AddForce(moveSpeedAcc * _rb.mass * inputDir, ForceMode.Force);
 
             playerModel.forward = Vector3.Slerp(playerModel.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
         }
@@ -100,18 +102,19 @@ public class PlayerControlled : MonoBehaviour
 
     private void CapSpeed()
     {
-        var flatVelocity = new Vector3(_rb.velocity.x, 0, _rb.velocity.z);
+        var rbVelocity = _rb.velocity;
+        var flatVelocity = new Vector3(rbVelocity.x, 0, rbVelocity.z);
 
-        var speedCap = moveSpeed;
+        var speedCap = moveSpeedCap;
         if (_dashing)
         {
-            speedCap = dashSpeed;
+            speedCap = dashSpeedCap;
         }
         if (flatVelocity.magnitude > speedCap)
         {
             var cappedSpeed = flatVelocity.normalized * speedCap;
             cappedSpeed = Vector3.Lerp(flatVelocity, cappedSpeed, Time.deltaTime);
-            _rb.velocity = new Vector3(cappedSpeed.x, _rb.velocity.y, cappedSpeed.z);
+            _rb.velocity = new Vector3(cappedSpeed.x, rbVelocity.y, cappedSpeed.z);
         }
     }
 
