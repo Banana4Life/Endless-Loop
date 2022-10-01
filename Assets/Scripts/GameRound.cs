@@ -35,10 +35,10 @@ public class GameRound : MonoBehaviour
         tikTokTime += Time.deltaTime;
         roundTime += Time.deltaTime;
         
-        if (roundTime > maxRoundTime - 1)
-        {
-            dissolver.StartDissolve(3);
-        }
+        // if (roundTime > maxRoundTime - 1)
+        // {
+        //     dissolver.StartDissolve(3);
+        // }
         
         if (tikTokTime > 1)
         {

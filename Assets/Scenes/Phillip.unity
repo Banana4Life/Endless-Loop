@@ -243,39 +243,13 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!1 &601513431 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132147688003402, guid: 3b3898ad227665821981117d4e669ae3,
-    type: 3}
-  m_PrefabInstance: {fileID: 1556897999}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &601513433
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 601513431}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 358f09882e8d22da1a049e3d3441bce0, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!43 &837192626
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh27068
+  m_Name: pb_Mesh53862
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -492,7 +466,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-31310
+  m_Name: pb_Mesh53848
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2

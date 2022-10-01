@@ -9,6 +9,8 @@ public class PlayerControlled : MonoBehaviour
     private Camera _cam;
     public Transform camHolder;
     private Rigidbody _rb;
+    public ParticleSystem walkingParticleSystem;
+    public ParticleSystem dashingParticleSystem;
 
     [Header("Movement")]
     public float moveSpeedAcc = 10f;
@@ -25,7 +27,6 @@ public class PlayerControlled : MonoBehaviour
     public float airDrag = 2;
     public LayerMask whatIsGround;
     private CapsuleCollider _playerCapsule;
- 
 
     [Header("Dashing")]
     public float dashAcc = 30;
@@ -38,6 +39,8 @@ public class PlayerControlled : MonoBehaviour
     private bool _dashPress;
     private static readonly int IsWalkingAnimationProperty = Animator.StringToHash("Is Walking");
     private static readonly int WalkSpeedAnimationProperty = Animator.StringToHash("Walk Speed");
+    
+    
 
     // Start is called before the first frame update
     void Start()
@@ -86,8 +89,20 @@ public class PlayerControlled : MonoBehaviour
         }
 
         var speed = _rb.velocity.magnitude * animationSpeed;
-        _animator.SetBool(IsWalkingAnimationProperty, speed > 0.1);
+        var isWalking = speed > 0.1;
+        _animator.SetBool(IsWalkingAnimationProperty, isWalking);
         _animator.SetFloat(WalkSpeedAnimationProperty, Mathf.Max(1, speed));
+        if (isWalking)
+        {
+            if (walkingParticleSystem.isStopped)
+            {
+                walkingParticleSystem.Play();
+            }
+        }
+        else
+        {
+            walkingParticleSystem.Stop();
+        }
     }
 
     private void Dash()
@@ -103,6 +118,7 @@ public class PlayerControlled : MonoBehaviour
         var forceToApply = dashAcc * rbMass * playerModel.forward + dashAccUp * rbMass * playerModel.up;
         _rb.AddForce(forceToApply, ForceMode.Impulse);
         Invoke(nameof(ResetDash), dashDuration);
+        dashingParticleSystem.Play();
     }
 
     private void ResetDash()
