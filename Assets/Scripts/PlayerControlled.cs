@@ -6,18 +6,24 @@ public class PlayerControlled : MonoBehaviour
     [Header("References")]
     public Transform orientation;
     public Transform playerModel;
-    public Camera cam;
+    private Camera _cam;
     public Transform camHolder;
     private Rigidbody _rb;
 
     [Header("Movement")]
     public float moveSpeedAcc = 10f;
     public float moveSpeedCap = 10f;
-    public bool onGround = true;
-    public float groundDrag = 1;
     public float rotationSpeed = 50;
     private float _hMove;
     private float _vMove;
+
+    [Header("Ground")] 
+    public bool onGround = true;
+    public float groundDrag = 5;
+    public float airDrag = 2;
+    public LayerMask whatIsGround;
+    private CapsuleCollider _playerCapsule;
+ 
 
     [Header("Dashing")]
     public float dashAcc = 30;
@@ -32,13 +38,17 @@ public class PlayerControlled : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _cam = Camera.main;
         _rb = GetComponent<Rigidbody>();
         _rb.freezeRotation = true;
+        _playerCapsule = playerModel.GetComponent<CapsuleCollider>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        onGround = Physics.Raycast(playerModel.position + _playerCapsule.center, Vector3.down, 0.2f + _playerCapsule.height / 2f, whatIsGround);
+        
         if (_dashCdTimer > 0)
         {
             _dashCdTimer -= Time.deltaTime;
@@ -48,22 +58,29 @@ public class PlayerControlled : MonoBehaviour
         GetInputs();
         CapSpeed();
         UpdateDrag();
-        if (_dashPress && !_dashing)
-        {
-            Dash();
-        }
+  
 
-        cam.transform.position = camHolder.position;
+        _cam.transform.position = camHolder.position;
     }
 
     private void UpdateDrag()
     {
-        _rb.drag = onGround ? groundDrag : 0;
+        _rb.drag = onGround ? groundDrag : airDrag;
     }
 
     private void FixedUpdate()
     {
-        MovePlayer();
+        if (onGround)
+        {
+            if (_dashPress && !_dashing)
+            {
+                Dash();
+            }
+            else
+            {
+                MovePlayer();
+            }
+        }
     }
 
     private void Dash()
@@ -90,7 +107,7 @@ public class PlayerControlled : MonoBehaviour
     {
         if (Math.Abs(_hMove) + Math.Abs(_vMove) > 0)
         {
-            var camDir = cam.transform.forward;
+            var camDir = _cam.transform.forward;
             orientation.forward = new Vector3(camDir.x, 0, camDir.z);
             
             var inputDir = (orientation.forward * _vMove + orientation.right * _hMove).normalized;
