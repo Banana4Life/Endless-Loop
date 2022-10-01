@@ -16,6 +16,8 @@ public class PlayerControlled : MonoBehaviour
     public float rotationSpeed = 50;
     private float _hMove;
     private float _vMove;
+    public float animationSpeed = 0.2f;
+    private Animator _animator;
 
     [Header("Ground")] 
     public bool onGround = true;
@@ -34,7 +36,9 @@ public class PlayerControlled : MonoBehaviour
     public float dashCd = 2;
     public float dashSpeedCap = 15f;
     private bool _dashPress;
-    
+    private static readonly int IsWalkingAnimationProperty = Animator.StringToHash("Is Walking");
+    private static readonly int WalkSpeedAnimationProperty = Animator.StringToHash("Walk Speed");
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +46,7 @@ public class PlayerControlled : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         _rb.freezeRotation = true;
         _playerCapsule = playerModel.GetComponent<CapsuleCollider>();
+        _animator = playerModel.GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -58,8 +63,6 @@ public class PlayerControlled : MonoBehaviour
         GetInputs();
         CapSpeed();
         UpdateDrag();
-  
-
         _cam.transform.position = camHolder.position;
     }
 
@@ -81,6 +84,10 @@ public class PlayerControlled : MonoBehaviour
                 MovePlayer();
             }
         }
+
+        var speed = _rb.velocity.magnitude * animationSpeed;
+        _animator.SetBool(IsWalkingAnimationProperty, speed > 0.1);
+        _animator.SetFloat(WalkSpeedAnimationProperty, Mathf.Max(1, speed));
     }
 
     private void Dash()
