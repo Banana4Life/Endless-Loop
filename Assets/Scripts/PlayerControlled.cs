@@ -68,6 +68,8 @@ public class PlayerControlled : MonoBehaviour
         UpdateDrag();
         var camTransform = _cam.transform;
         camTransform.position = Vector3.Lerp(camTransform.position, new Vector3(camHolder.position.x, camTransform.position.y, camHolder.position.z), Time.deltaTime * camSpeed);
+        
+        
     }
 
     private void UpdateDrag()

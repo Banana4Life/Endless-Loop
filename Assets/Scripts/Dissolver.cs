@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Dissolver : MonoBehaviour
 {
-    public SkinnedMeshRenderer[] skinnedMeshRenderers;
+    private SkinnedMeshRenderer[] _skinnedMeshRenderers;
     private float _min;
 
     private float _max;
@@ -23,10 +23,11 @@ public class Dissolver : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _min = skinnedMeshRenderers.ToList().Max(r => r.bounds.min.y);
-        _max = skinnedMeshRenderers.ToList().Max(r => r.bounds.max.y);
+        _skinnedMeshRenderers = GetComponentsInChildren<SkinnedMeshRenderer>();
+        _min = _skinnedMeshRenderers.ToList().Max(r => r.bounds.min.y);
+        _max = _skinnedMeshRenderers.ToList().Max(r => r.bounds.max.y);
         // Debug.Log("Meshes from " + _min + " to " + _max + " h=" + (_max - _min));
-        foreach (var r in skinnedMeshRenderers)
+        foreach (var r in _skinnedMeshRenderers)
         {
             // Debug.Log(r.name + ": " + r.bounds.min + " to " + r.bounds.max);
             r.material.SetFloat("_MaxHeight", _max + 1);
@@ -42,7 +43,7 @@ public class Dissolver : MonoBehaviour
         {
             pcent += Time.deltaTime * _dissolveSpeed;
             
-            foreach (var skinnedMeshRenderer in skinnedMeshRenderers)
+            foreach (var skinnedMeshRenderer in _skinnedMeshRenderers)
             {
                 skinnedMeshRenderer.material.SetFloat("_PercentageDissolved", pcent);
             }

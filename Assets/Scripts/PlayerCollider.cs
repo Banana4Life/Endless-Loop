@@ -5,6 +5,9 @@ using UnityEngine;
 public class PlayerCollider : MonoBehaviour
 {
     public Vector3 lastTeleportPosition;
+    public Animator animator;
+    private static readonly int HoldingWeaponProperty = Animator.StringToHash("Holding Weapon");
+
     public void SetLastTeleport(Vector3 position)
     {
         lastTeleportPosition = position;
@@ -14,6 +17,13 @@ public class PlayerCollider : MonoBehaviour
 
     public void Pickup(PickupData data)
     {
+        switch (data.itemName)
+        {
+            case "weapon":
+                animator.SetBool(HoldingWeaponProperty, true);
+                break;
+        }
+
         Debug.Log("Picked up " + data.itemName);
     }
 }
