@@ -6,50 +6,81 @@ using UnityEngine.Rendering.Universal;
 
 public class GameRound : MonoBehaviour
 {
-    private Volume volume;
-    public CapsuleDissolver dissolver;
+    [Header("Player Refs")]
+    public Dissolver playerDissolver;
+    public PlayerCollider playerCollider;
+    public PlayerControlled playerControlled;
+    public Transform playerPos;
 
+    [Header("Audio")]
     public AudioSource tik;
     public AudioSource tok;
     private bool tikOrTok;
-    
-    private float roundTime;
     private float tikTokTime;
+
+    [Header("Round Settings")]
+    private float roundTime;
     public float maxRoundTime = 10;
+    public float teleportTime = 1;
+    public float preRoundTime = 1;
+    public float postRoundTime = 1;
 
-    public int state = 0;
+    private Volume volume;
 
-    public int undissolveSpeed = 300;
-    public int dissolveSpeed = 200;
-
+    
     // Start is called before the first frame update
     void Start()
     {
-        volume = GetComponent<Volume>();
+        volume = Camera.main.GetComponent<Volume>();
         if (volume.profile.TryGet<Vignette>(out var vignette))
         {
             vignette.intensity.overrideState = true;
             vignette.intensity.value = 0;
         }
+        playerControlled.EnableMovement();
     }
 
     // Update is called once per frame
     void Update()
     {
-        tikTokTime += Time.deltaTime;
+        PlayTikTokSound();
         roundTime += Time.deltaTime;
-        
-        if (roundTime > maxRoundTime - 1)
+
+        if (roundTime > maxRoundTime + teleportTime + postRoundTime + preRoundTime)
         {
-            dissolver.StartDissolve(dissolveSpeed);
+            playerControlled.EnableMovement();
+            roundTime = 0;
+        }
+        else if (roundTime > maxRoundTime + teleportTime + postRoundTime)
+        {
+            playerDissolver.StartUnDissolve();
+        }
+        else if (roundTime > maxRoundTime + teleportTime)
+        {
+            playerPos.position = playerCollider.lastTeleportPosition;
+        }
+        else if (roundTime > maxRoundTime)
+        {
+            playerDissolver.StartDissolve();
+            playerControlled.DisableMovement();
         }
         
+        // if (volume.profile.TryGet<Vignette>(out var vignette))
+        // {
+        //     vignette.intensity.value = roundTime / maxRoundTime;
+        // }
+    }
+
+    private void PlayTikTokSound()
+    {
+        tikTokTime += Time.deltaTime;
+
         if (tikTokTime > 1)
         {
             tikTokTime -= 1;
             if (tikOrTok)
             {
-                tik.Play();    
+                tik.Play();
             }
             else
             {
@@ -57,18 +88,6 @@ public class GameRound : MonoBehaviour
             }
 
             tikOrTok = !tikOrTok;
-
-        }
-        if (roundTime > maxRoundTime)
-        {
-            roundTime -= maxRoundTime;
-            dissolver.StartUnDissolve(undissolveSpeed);
-        }
-        
-        if (volume.profile.TryGet<Vignette>(out var vignette))
-        {
-            vignette.intensity.value = roundTime / maxRoundTime;
-            
         }
     }
 }

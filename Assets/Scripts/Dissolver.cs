@@ -5,7 +5,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class CapsuleDissolver : MonoBehaviour
+public class Dissolver : MonoBehaviour
 {
     public SkinnedMeshRenderer[] skinnedMeshRenderers;
     private float _min;
@@ -14,7 +14,10 @@ public class CapsuleDissolver : MonoBehaviour
 
     public float pcent = 0;
 
-    public float dissolveSpeed;
+    private float _dissolveSpeed;
+    
+    public int undissolveSpeed = 300;
+    public int dissolveSpeed = 200;
 
 
     // Start is called before the first frame update
@@ -35,9 +38,9 @@ public class CapsuleDissolver : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (dissolveSpeed != 0)
+        if (_dissolveSpeed != 0)
         {
-            pcent += Time.deltaTime * dissolveSpeed;
+            pcent += Time.deltaTime * _dissolveSpeed;
             
             foreach (var skinnedMeshRenderer in skinnedMeshRenderers)
             {
@@ -45,27 +48,27 @@ public class CapsuleDissolver : MonoBehaviour
             }
             if (pcent < 0)
             {
-                dissolveSpeed = 0;
+                _dissolveSpeed = 0;
                 pcent = 0;
             }
             else if (pcent > 100)
             {
-                dissolveSpeed = 0;
+                _dissolveSpeed = 0;
                 pcent = 100;
             }
         }
     }
 
-    public void StartDissolve(float speed)
+    public void StartDissolve()
     {
-        if (dissolveSpeed == 0)
+        if (_dissolveSpeed == 0)
         {
-            dissolveSpeed = speed;
+            _dissolveSpeed = dissolveSpeed;
         }
     }
 
-    public void StartUnDissolve(float speed)
+    public void StartUnDissolve()
     {
-        dissolveSpeed = -speed;
+        _dissolveSpeed = -undissolveSpeed;
     }
 }

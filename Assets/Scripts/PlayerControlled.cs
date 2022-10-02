@@ -20,6 +20,7 @@ public class PlayerControlled : MonoBehaviour
     private float _vMove;
     public float animationSpeed = 0.2f;
     private Animator _animator;
+    public bool movementEnabled = true;
 
     [Header("Ground")] 
     public bool onGround = true;
@@ -39,10 +40,10 @@ public class PlayerControlled : MonoBehaviour
     private bool _dashPress;
     private static readonly int IsWalkingAnimationProperty = Animator.StringToHash("Is Walking");
     private static readonly int WalkSpeedAnimationProperty = Animator.StringToHash("Walk Speed");
-    
-    
 
-    // Start is called before the first frame update
+    [Header("Cam Follow")] 
+    public float camSpeed = 5;
+    
     void Start()
     {
         _cam = Camera.main;
@@ -62,11 +63,11 @@ public class PlayerControlled : MonoBehaviour
             _dashCdTimer -= Time.deltaTime;
         }
         
-        
         GetInputs();
         CapSpeed();
         UpdateDrag();
-        _cam.transform.position = camHolder.position;
+        var camTransform = _cam.transform;
+        camTransform.position = Vector3.Lerp(camTransform.position, new Vector3(camHolder.position.x, camTransform.position.y, camHolder.position.z), Time.deltaTime * camSpeed);
     }
 
     private void UpdateDrag()
@@ -76,7 +77,7 @@ public class PlayerControlled : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (onGround)
+        if (movementEnabled && onGround)
         {
             if (_dashPress && !_dashing)
             {
@@ -88,11 +89,11 @@ public class PlayerControlled : MonoBehaviour
             }
         }
 
-        var speed = _rb.velocity.magnitude * animationSpeed;
+        var speed = new Vector3(_rb.velocity.x, 0, _rb.velocity.z).magnitude * animationSpeed;
         var isWalking = speed > 0.1;
         _animator.SetBool(IsWalkingAnimationProperty, isWalking);
         _animator.SetFloat(WalkSpeedAnimationProperty, Mathf.Max(1, speed));
-        if (isWalking)
+        if (movementEnabled && isWalking)
         {
             if (walkingParticleSystem.isStopped)
             {
@@ -165,4 +166,13 @@ public class PlayerControlled : MonoBehaviour
         _dashPress = Input.GetKey(KeyCode.Space);
     }
 
+    public void EnableMovement()
+    {
+        movementEnabled = true;
+    }
+
+    public void DisableMovement()
+    {
+        movementEnabled = false;
+    }
 }
