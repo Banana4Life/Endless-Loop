@@ -5,7 +5,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class CapsuleDissolver : MonoBehaviour
+public class Dissolver : MonoBehaviour
 {
     public SkinnedMeshRenderer[] skinnedMeshRenderers;
     private float _min;

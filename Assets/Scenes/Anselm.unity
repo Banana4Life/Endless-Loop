@@ -10822,7 +10822,6 @@ GameObject:
   - component: {fileID: 1609972062}
   - component: {fileID: 1609972061}
   - component: {fileID: 1609972064}
-  - component: {fileID: 1609972065}
   - component: {fileID: 1609972066}
   m_Layer: 0
   m_Name: Main Camera
@@ -10932,25 +10931,6 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!114 &1609972065
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1609972060}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0af5be450c9b90384a0328498b371eac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dissolver: {fileID: 2099009291}
-  tik: {fileID: 2097658524}
-  tok: {fileID: 1435892581}
-  maxRoundTime: 10
-  state: 0
-  undissolveSpeed: 300
-  dissolveSpeed: 200
 --- !u!114 &1609972066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13065,18 +13045,6 @@ Transform:
   m_Father: {fileID: 1609972063}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2099009291 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1971942105059336667, guid: 3b3898ad227665821981117d4e669ae3,
-    type: 3}
-  m_PrefabInstance: {fileID: 1894229063910303326}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47e4e376db091f2ed979272735216a18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1894229063910303326
 PrefabInstance:
   m_ObjectHideFlags: 0

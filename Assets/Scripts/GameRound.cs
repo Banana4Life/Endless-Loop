@@ -7,7 +7,7 @@ using UnityEngine.Rendering.Universal;
 public class GameRound : MonoBehaviour
 {
     private Volume volume;
-    public CapsuleDissolver dissolver;
+    private Dissolver _dissolver;
 
     public AudioSource tik;
     public AudioSource tok;
@@ -25,7 +25,8 @@ public class GameRound : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        volume = GetComponent<Volume>();
+        volume = Camera.main.GetComponent<Volume>();
+        _dissolver = GetComponent<Dissolver>();
         if (volume.profile.TryGet<Vignette>(out var vignette))
         {
             vignette.intensity.overrideState = true;
@@ -41,7 +42,7 @@ public class GameRound : MonoBehaviour
         
         if (roundTime > maxRoundTime - 1)
         {
-            dissolver.StartDissolve(dissolveSpeed);
+            _dissolver.StartDissolve(dissolveSpeed);
         }
         
         if (tikTokTime > 1)
@@ -62,7 +63,7 @@ public class GameRound : MonoBehaviour
         if (roundTime > maxRoundTime)
         {
             roundTime -= maxRoundTime;
-            dissolver.StartUnDissolve(undissolveSpeed);
+            _dissolver.StartUnDissolve(undissolveSpeed);
         }
         
         if (volume.profile.TryGet<Vignette>(out var vignette))

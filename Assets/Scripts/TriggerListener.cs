@@ -6,10 +6,10 @@ public class TriggerListener : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        var pickup = other.gameObject.GetComponent<PlayerCollider>();
-        if (pickup)
+        var player = other.gameObject.GetComponent<PlayerCollider>();
+        if (player)
         {
-            Debug.Log("Picked up " + _data.itemName);
+            player.Pickup(_data);
             Destroy(transform.parent.gameObject);
         }
     }

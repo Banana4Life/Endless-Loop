@@ -6,9 +6,10 @@ public class TeleporterTrigger : MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
     {
-        var pickup = other.gameObject.GetComponent<PlayerCollider>();
-        if (pickup)
+        var player = other.gameObject.GetComponent<PlayerCollider>();
+        if (player)
         {
+            player.SetLastTeleport(transform.position);
             Debug.Log("Teleporter Touched");
         }
     }
