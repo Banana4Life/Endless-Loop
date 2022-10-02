@@ -31,12 +31,12 @@ public class GameRound : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        volume = Camera.main.GetComponent<Volume>();
+        /*volume = Camera.main.GetComponent<Volume>();
         if (volume.profile.TryGet<Vignette>(out var vignette))
         {
             vignette.intensity.overrideState = true;
             vignette.intensity.value = 0;
-        }
+        }*/
         playerControlled.EnableMovement();
     }
 

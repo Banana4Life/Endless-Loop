@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerControlled : MonoBehaviour
@@ -10,7 +11,7 @@ public class PlayerControlled : MonoBehaviour
     public Transform camHolder;
     private Rigidbody _rb;
     public ParticleSystem walkingParticleSystem;
-    public ParticleSystem dashingParticleSystem;
+    public GameObject dashingParticleSystem;
 
     [Header("Movement")]
     public float moveSpeedAcc = 10f;
@@ -123,7 +124,7 @@ public class PlayerControlled : MonoBehaviour
         var forceToApply = dashAcc * rbMass * playerModel.forward + dashAccUp * rbMass * playerModel.up;
         _rb.AddForce(forceToApply, ForceMode.Impulse);
         Invoke(nameof(ResetDash), dashDuration);
-        dashingParticleSystem.Play();
+        dashingParticleSystem.GetComponentsInChildren<ParticleSystem>().ToList().ForEach(p => p.Play());
     }
 
     private void ResetDash()
