@@ -10,7 +10,6 @@ public class TeleporterTrigger : MonoBehaviour
         if (player)
         {
             player.SetLastTeleport(transform.position);
-            Debug.Log("Teleporter Touched");
         }
     }
 }

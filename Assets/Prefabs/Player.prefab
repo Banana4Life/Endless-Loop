@@ -10079,6 +10079,7 @@ MonoBehaviour:
   moveSpeedCap: 12
   rotationSpeed: 10
   animationSpeed: 0.2
+  movementEnabled: 1
   onGround: 1
   groundDrag: 5
   airDrag: 2
@@ -10090,6 +10091,7 @@ MonoBehaviour:
   dashDuration: 0.25
   dashCd: 0.75
   dashSpeedCap: 20
+  camSpeed: 5
 --- !u!54 &1894229064567736176
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10123,7 +10125,8 @@ MonoBehaviour:
   - {fileID: 5541209697090564586}
   - {fileID: 3101658039695153469}
   pcent: 0
-  dissolveSpeed: 0
+  undissolveSpeed: 300
+  dissolveSpeed: 200
 --- !u!114 &8799118346259871883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10136,12 +10139,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0af5be450c9b90384a0328498b371eac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerDissolver: {fileID: 3490135497010914614}
+  playerCollider: {fileID: 180262159}
+  playerControlled: {fileID: 1894229064567736174}
+  playerPos: {fileID: 1894229064567736177}
   tik: {fileID: 8525662986569805092}
   tok: {fileID: 8955554599922743746}
   maxRoundTime: 10
-  state: 0
-  undissolveSpeed: 300
-  dissolveSpeed: 200
+  teleportTime: 1
+  preRoundTime: 1
+  postRoundTime: 1
 --- !u!114 &3508953496287329857
 MonoBehaviour:
   m_ObjectHideFlags: 0

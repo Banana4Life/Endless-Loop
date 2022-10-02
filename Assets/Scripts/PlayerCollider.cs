@@ -8,6 +8,8 @@ public class PlayerCollider : MonoBehaviour
     public void SetLastTeleport(Vector3 position)
     {
         lastTeleportPosition = position;
+        Debug.Log("Teleporter Touched at " + position);
+
     }
 
     public void Pickup(PickupData data)
