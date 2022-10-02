@@ -43,6 +43,7 @@ public class PlayerControlled : MonoBehaviour
 
     [Header("Cam Follow")] 
     public float camSpeed = 5;
+    public float camRotSpeed = 1;
     
     void Start()
     {
@@ -67,9 +68,10 @@ public class PlayerControlled : MonoBehaviour
         CapSpeed();
         UpdateDrag();
         var camTransform = _cam.transform;
-        camTransform.position = Vector3.Lerp(camTransform.position, new Vector3(camHolder.position.x, camTransform.position.y, camHolder.position.z), Time.deltaTime * camSpeed);
-        
-        
+        var camCart = camTransform.parent;
+        // camCart.position = Vector3.Lerp(camCart.position, new Vector3(camHolder.position.x, camCart.position.y, camHolder.position.z), Time.deltaTime * camSpeed);
+        // Debug.Log(camCart.gameObject.name+ " " + camTransform.gameObject.name);
+        // camCart.rotation = Quaternion.Lerp(camCart.rotation, camHolder.transform.rotation, Time.deltaTime * rotationSpeed);
     }
 
     private void UpdateDrag()

@@ -32,8 +32,10 @@ public class Dissolver : MonoBehaviour
             // Debug.Log(r.name + ": " + r.bounds.min + " to " + r.bounds.max);
             r.material.SetFloat("_MaxHeight", _max + 1);
             r.material.SetFloat("_MinHeight", _min- 1);
-            r.material.SetFloat("_PercentageDissolved", 50);
+            r.material.SetFloat("_PercentageDissolved", 100);
         }
+
+        _dissolveSpeed = -300;
     }
 
     // Update is called once per frame

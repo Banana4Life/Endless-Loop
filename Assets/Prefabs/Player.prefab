@@ -33,6 +33,7 @@ Transform:
   - {fileID: 543450651945176560}
   - {fileID: 549250188494069208}
   - {fileID: 4576876296738885797}
+  - {fileID: 8320797672384278749}
   m_Father: {fileID: 1894229064567736177}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4970,7 +4971,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 465622852908229372}
   m_LocalRotation: {x: 0.28678817, y: -0.28678817, z: 0.09042394, w: 0.90957606}
-  m_LocalPosition: {x: 0, y: 5, z: -8}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9956,37 +9957,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!1 &1894229063222089929
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1894229063222089926}
-  m_Layer: 0
-  m_Name: CamHolder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1894229063222089926
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1894229063222089929}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.250009, y: 5, z: -3.0000124}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1894229064567736177}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1894229064146933957
 GameObject:
   m_ObjectHideFlags: 0
@@ -10053,9 +10023,7 @@ Transform:
   m_Children:
   - {fileID: 180262157}
   - {fileID: 1894229064146933954}
-  - {fileID: 1894229063222089926}
   - {fileID: 1894229064741891551}
-  - {fileID: 8320797672384278749}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10073,7 +10041,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orientation: {fileID: 1894229064146933954}
   playerModel: {fileID: 180262157}
-  camHolder: {fileID: 1894229063222089926}
+  camHolder: {fileID: 0}
   walkingParticleSystem: {fileID: 8957231879617576187}
   dashingParticleSystem: {fileID: 4703957170267854011}
   moveSpeedAcc: 35
@@ -10093,6 +10061,7 @@ MonoBehaviour:
   dashCd: 0.75
   dashSpeedCap: 20
   camSpeed: 5
+  camRotSpeed: 1
 --- !u!54 &1894229064567736176
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10143,9 +10112,9 @@ MonoBehaviour:
   tik: {fileID: 8525662986569805092}
   tok: {fileID: 8955554599922743746}
   maxRoundTime: 10
-  teleportTime: 1
-  preRoundTime: 1
-  postRoundTime: 1
+  teleportTime: 0.7
+  preRoundTime: 0.4
+  postRoundTime: 0.7
 --- !u!114 &3508953496287329857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10303,14 +10272,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6028971691580852571}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6668984665244016417}
   - {fileID: 8476396054764662672}
-  m_Father: {fileID: 1894229064567736177}
+  m_Father: {fileID: 180262157}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7928319660108850250
@@ -10338,7 +10307,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7928319660108850250}
   m_LocalRotation: {x: 0.28678817, y: -0.28678817, z: 0.09042394, w: 0.90957606}
-  m_LocalPosition: {x: 0, y: 5, z: -8}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
