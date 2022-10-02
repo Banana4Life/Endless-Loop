@@ -2,17 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CapsuleDissolver : MonoBehaviour
 {
-    private MeshFilter _filter;
-    private MeshRenderer _renderer;
+    public SkinnedMeshRenderer[] skinnedMeshRenderers;
     private float _min;
 
     private float _max;
 
-    private float _cutoff;
+    public float pcent = 0;
 
     public float dissolveSpeed;
 
@@ -20,12 +20,16 @@ public class CapsuleDissolver : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _filter = GetComponent<MeshFilter>();
-        _renderer = GetComponent<MeshRenderer>();
-        _min = _filter.sharedMesh.vertices.ToList().Min(v => v.y) - 1;
-        _max = _filter.sharedMesh.vertices.ToList().Max(v => v.y) + 1;
-        _cutoff = _max;
-        _renderer.sharedMaterial.SetFloat("_CutOffHeight", _cutoff);
+        _min = skinnedMeshRenderers.ToList().Max(r => r.bounds.min.y);
+        _max = skinnedMeshRenderers.ToList().Max(r => r.bounds.max.y);
+        // Debug.Log("Meshes from " + _min + " to " + _max + " h=" + (_max - _min));
+        foreach (var r in skinnedMeshRenderers)
+        {
+            // Debug.Log(r.name + ": " + r.bounds.min + " to " + r.bounds.max);
+            r.material.SetFloat("_MaxHeight", _max + 1);
+            r.material.SetFloat("_MinHeight", _min- 1);
+            r.material.SetFloat("_PercentageDissolved", 50);
+        }
     }
 
     // Update is called once per frame
@@ -33,15 +37,21 @@ public class CapsuleDissolver : MonoBehaviour
     {
         if (dissolveSpeed != 0)
         {
-            _cutoff -= Time.deltaTime * dissolveSpeed;
-            _renderer.sharedMaterial.SetFloat("_CutOffHeight", _cutoff);
-            if (_cutoff < _min)
+            pcent += Time.deltaTime * dissolveSpeed;
+            
+            foreach (var skinnedMeshRenderer in skinnedMeshRenderers)
             {
-                dissolveSpeed = 0;
+                skinnedMeshRenderer.material.SetFloat("_PercentageDissolved", pcent);
             }
-            else if (_cutoff > _max)
+            if (pcent < 0)
             {
                 dissolveSpeed = 0;
+                pcent = 0;
+            }
+            else if (pcent > 100)
+            {
+                dissolveSpeed = 0;
+                pcent = 100;
             }
         }
     }
@@ -50,14 +60,12 @@ public class CapsuleDissolver : MonoBehaviour
     {
         if (dissolveSpeed == 0)
         {
-            _cutoff = _max;
             dissolveSpeed = speed;
         }
     }
 
     public void StartUnDissolve(float speed)
     {
-        _cutoff = _min;
         dissolveSpeed = -speed;
     }
 }

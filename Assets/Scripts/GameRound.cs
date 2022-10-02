@@ -18,6 +18,10 @@ public class GameRound : MonoBehaviour
     public float maxRoundTime = 10;
 
     public int state = 0;
+
+    public int undissolveSpeed = 300;
+    public int dissolveSpeed = 200;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,10 +39,10 @@ public class GameRound : MonoBehaviour
         tikTokTime += Time.deltaTime;
         roundTime += Time.deltaTime;
         
-        // if (roundTime > maxRoundTime - 1)
-        // {
-        //     dissolver.StartDissolve(3);
-        // }
+        if (roundTime > maxRoundTime - 1)
+        {
+            dissolver.StartDissolve(dissolveSpeed);
+        }
         
         if (tikTokTime > 1)
         {
@@ -58,7 +62,7 @@ public class GameRound : MonoBehaviour
         if (roundTime > maxRoundTime)
         {
             roundTime -= maxRoundTime;
-            dissolver.StartUnDissolve(4);
+            dissolver.StartUnDissolve(undissolveSpeed);
         }
         
         if (volume.profile.TryGet<Vignette>(out var vignette))
