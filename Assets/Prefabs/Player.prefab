@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 180262157}
   - component: {fileID: 180262160}
   - component: {fileID: 180262159}
+  - component: {fileID: 3332185825316534865}
   m_Layer: 0
   m_Name: DudeWrapper
   m_TagString: Untagged
@@ -65,6 +66,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lastTeleportPosition: {x: 0, y: 0, z: 0}
   animator: {fileID: 601513433}
+--- !u!114 &3332185825316534865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180262156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ce11ee9397b4490faed0c1acca3a2f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 8237182274157024033, guid: ccce02c7aa7810388898afe7f2435a3c,
+    type: 3}
+  impulseStrength: 16.34
+  height: 0.9
+  offset: 0.72
+  projectileLifetime: 5
+  projectileRotationImpulse: 5
 --- !u!1 &704727460
 GameObject:
   m_ObjectHideFlags: 0
@@ -10001,7 +10021,6 @@ GameObject:
   - component: {fileID: 1894229064567736176}
   - component: {fileID: 3490135497010914614}
   - component: {fileID: 8799118346259871883}
-  - component: {fileID: 3508953496287329857}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -10041,7 +10060,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orientation: {fileID: 1894229064146933954}
   playerModel: {fileID: 180262157}
-  camHolder: {fileID: 0}
   walkingParticleSystem: {fileID: 8957231879617576187}
   dashingParticleSystem: {fileID: 5569247386841255018}
   moveSpeedAcc: 35
@@ -10060,8 +10078,6 @@ MonoBehaviour:
   dashDuration: 0.25
   dashCd: 0.75
   dashSpeedCap: 20
-  camSpeed: 5
-  camRotSpeed: 1
 --- !u!54 &1894229064567736176
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10115,25 +10131,6 @@ MonoBehaviour:
   teleportTime: 0.7
   preRoundTime: 0.4
   postRoundTime: 0.7
---- !u!114 &3508953496287329857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1894229064567736179}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ce11ee9397b4490faed0c1acca3a2f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 8237182274157024033, guid: ccce02c7aa7810388898afe7f2435a3c,
-    type: 3}
-  impulseStrength: 16.34
-  height: 0.9
-  offset: 0.72
-  projectileLifetime: 5
-  projectileRotationImpulse: 5
 --- !u!1 &1894229064741891550
 GameObject:
   m_ObjectHideFlags: 0

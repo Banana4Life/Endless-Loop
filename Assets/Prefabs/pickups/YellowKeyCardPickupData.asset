@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37c857d84ea04f529046074535c7213e, type: 3}
+  m_Name: YellowKeyCardPickupData
+  m_EditorClassIdentifier: 
+  itemName: yellowKeyCard
+  model: {fileID: 8298331226076796391, guid: 9d9f82bbe6c453e5c9177a875e8877fa, type: 3}

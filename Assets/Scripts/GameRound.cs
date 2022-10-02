@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
-using UnityEngine.Rendering.Universal;
 
 public class GameRound : MonoBehaviour
 {
@@ -31,12 +28,11 @@ public class GameRound : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        /*volume = Camera.main.GetComponent<Volume>();
-        if (volume.profile.TryGet<Vignette>(out var vignette))
+        foreach (var placeholder in GameObject.FindGameObjectsWithTag("placeholder"))
         {
-            vignette.intensity.overrideState = true;
-            vignette.intensity.value = 0;
-        }*/
+            Destroy(placeholder);
+        }
+
         playerControlled.EnableMovement();
     }
 

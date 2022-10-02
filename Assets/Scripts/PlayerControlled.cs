@@ -8,7 +8,6 @@ public class PlayerControlled : MonoBehaviour
     public Transform orientation;
     public Transform playerModel;
     private Camera _cam;
-    public Transform camHolder;
     private Rigidbody _rb;
     public ParticleSystem walkingParticleSystem;
     public GameObject dashingParticleSystem;
@@ -41,10 +40,6 @@ public class PlayerControlled : MonoBehaviour
     private bool _dashPress;
     private static readonly int IsWalkingAnimationProperty = Animator.StringToHash("Is Walking");
     private static readonly int WalkSpeedAnimationProperty = Animator.StringToHash("Walk Speed");
-
-    [Header("Cam Follow")] 
-    public float camSpeed = 5;
-    public float camRotSpeed = 1;
     
     void Start()
     {
@@ -68,11 +63,6 @@ public class PlayerControlled : MonoBehaviour
         GetInputs();
         CapSpeed();
         UpdateDrag();
-        var camTransform = _cam.transform;
-        var camCart = camTransform.parent;
-        // camCart.position = Vector3.Lerp(camCart.position, new Vector3(camHolder.position.x, camCart.position.y, camHolder.position.z), Time.deltaTime * camSpeed);
-        // Debug.Log(camCart.gameObject.name+ " " + camTransform.gameObject.name);
-        // camCart.rotation = Quaternion.Lerp(camCart.rotation, camHolder.transform.rotation, Time.deltaTime * rotationSpeed);
     }
 
     private void UpdateDrag()
