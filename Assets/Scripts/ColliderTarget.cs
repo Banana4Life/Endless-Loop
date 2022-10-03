@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class ColliderTarget : MonoBehaviour
@@ -5,6 +6,13 @@ public class ColliderTarget : MonoBehaviour
     public string triggerTag = "bullet";
     public GameObject[] pressables;
     public Transform holdPosition;
+    private AudioSource _audio;
+
+    private void Start()
+    {
+        _audio = GetComponent<AudioSource>();
+    }
+
     public void OnTriggerEnter(Collider other)
     {
         if (other.tag.Equals(triggerTag))
@@ -13,6 +21,10 @@ public class ColliderTarget : MonoBehaviour
             var rb = other.gameObject.GetComponent<Rigidbody>();
             rb.isKinematic = true;
             other.gameObject.transform.position = holdPosition.position;
+            if (_audio)
+            {
+                _audio.Play();
+            }
         }
     }
 
