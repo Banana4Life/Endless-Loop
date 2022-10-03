@@ -8,7 +8,13 @@ public class PlayerCollider : MonoBehaviour
     public Animator animator;
     private static readonly int HoldingWeaponProperty = Animator.StringToHash("Holding Weapon");
     public List<PickupData> itemsInInventory = new();
+    public PickupData dashItem;
 
+    public bool canDash()
+    {
+        return itemsInInventory.Contains(dashItem);
+    }
+    
     public void SetLastTeleport(Vector3 position)
     {
         lastTeleportPosition = position;

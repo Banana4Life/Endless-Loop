@@ -9,6 +9,7 @@ public class PlayerControlled : MonoBehaviour
     public Transform playerModel;
     private Camera _cam;
     private Rigidbody _rb;
+    public PlayerCollider playerCollider;
     public ParticleSystem walkingParticleSystem;
     public GameObject dashingParticleSystem;
 
@@ -74,7 +75,7 @@ public class PlayerControlled : MonoBehaviour
     {
         if (movementEnabled && onGround)
         {
-            if (_dashPress && !_dashing)
+            if (_dashPress && !_dashing && playerCollider.canDash())
             {
                 Dash();
             }

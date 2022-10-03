@@ -66,6 +66,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lastTeleportPosition: {x: 0, y: 0, z: 0}
   animator: {fileID: 601513433}
+  itemsInInventory: []
+  dashItem: {fileID: 11400000, guid: 0c2bd8490af1add069b50c2d5c1d3c85, type: 2}
 --- !u!114 &3332185825316534865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4908,7 +4910,7 @@ ParticleSystemRenderer:
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
-  m_LightProbeUsage: 0
+  m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
@@ -10060,6 +10062,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orientation: {fileID: 1894229064146933954}
   playerModel: {fileID: 180262157}
+  playerCollider: {fileID: 180262159}
   walkingParticleSystem: {fileID: 8957231879617576187}
   dashingParticleSystem: {fileID: 5569247386841255018}
   moveSpeedAcc: 35
@@ -15078,7 +15081,7 @@ ParticleSystemRenderer:
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
-  m_LightProbeUsage: 0
+  m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
@@ -20030,7 +20033,7 @@ ParticleSystemRenderer:
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
-  m_LightProbeUsage: 0
+  m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
@@ -24911,7 +24914,7 @@ ParticleSystemRenderer:
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
-  m_LightProbeUsage: 0
+  m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
