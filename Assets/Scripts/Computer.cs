@@ -23,7 +23,7 @@ public class Computer : MonoBehaviour, Pressable
     {
         if (end)
         {
-            mixer.FindSnapshot("Off").TransitionTo(15);
+            mixer.FindSnapshot("Off").TransitionTo(10);
         }
     }
 }
