@@ -16,12 +16,12 @@ public class DoorControl : MonoBehaviour, Pressable
     public AudioSource useKeyCardAudioSource;
     private void Start()
     {
+        _animator = GetComponent<Animator>();
         if (randomOpen)
         {
             open = Random.value > 0.5;
+            _animator.SetBool("IsOpen", open);
         }
-
-        _animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -35,7 +35,6 @@ public class DoorControl : MonoBehaviour, Pressable
         if (open != isOpen)
         {
             _animator.SetBool("IsOpen", open);
-            playAudio();
         }
         
     }
@@ -84,10 +83,17 @@ public class DoorControl : MonoBehaviour, Pressable
         var player = other.GetComponent<PlayerCollider>();
         if (player && player.itemsInInventory.Contains(requiredKey))
         {
-            open = true;
-            _animator.SetBool("IsOpen", open);
-            playAudio();
-            playActivated();
+            if (!open)
+            {
+                open = true;
+                _animator.SetBool("IsOpen", open);
+                playAudio();
+                playActivated();    
+            }
+            else
+            {
+                // TODO denied sound?
+            }
         }
     }
 
