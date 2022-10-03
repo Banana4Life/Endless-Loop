@@ -1,0 +1,13 @@
+{
+  "name": "Endless Loop",
+  "description": "Escape the loop!",
+  "jam": {
+    "name": "Ludum Dare",
+    "number": 51,
+    "theme": "Every 10 seconds",
+    "site": "https://ldjam.com/events/ludum-dare/51/endless-loop",
+    "comments": []
+  },
+  "web": "https://banana4life.github.io/Endless-Loop/latest",
+  "authors": []
+}
