@@ -8,7 +8,7 @@ public class ColliderTeleporter : MonoBehaviour
         var player = other.gameObject.GetComponent<PlayerCollider>();
         if (player)
         {
-            if (player.lastTeleportPosition != transform.position)
+            if (player.lastTeleportPosition != Vector3.zero && player.lastTeleportPosition != transform.position)
             {
                 audioSource.Play();
             }
