@@ -9,6 +9,7 @@ public class PlayerCollider : MonoBehaviour
     public List<PickupData> itemsInInventory = new();
     public PickupData dashItem;
     public GameObject pickupAudioSources;
+    public GameObject weapon;
 
     public bool canDash()
     {
@@ -27,6 +28,7 @@ public class PlayerCollider : MonoBehaviour
         {
             case "weapon":
                 animator.SetBool(HoldingWeaponProperty, true);
+                weapon.SetActive(true);
                 break;
         }
         itemsInInventory.Add(data);
