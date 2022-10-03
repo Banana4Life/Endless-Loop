@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Phillip.unity
-    guid: 8762895041fe8e1d6a5187482608348e
+    path: Assets/Scenes/Main.unity
+    guid: 667243d817560e1e18cc242a1fc6b71d
   m_configObjects: {}
