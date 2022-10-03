@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18029127, g: 0.22572401, b: 0.3069303, a: 1}
+  m_IndirectSpecularColor: {r: 0.12732331, g: 0.13415194, b: 0.12107967, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -236,6 +236,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2884133052285653098, guid: 6a09c1b8b454631feb36a8678e98e539,
     type: 3}
   m_PrefabInstance: {fileID: 3709307}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &25631136 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4275092978563669407, guid: 0e6bbf54548fed1dba75b7f39b49f146,
+    type: 3}
+  m_PrefabInstance: {fileID: 1561305743}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &35545134
 PrefabInstance:
@@ -693,7 +699,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 177349013}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.28, y: 0, z: -16.64}
+  m_LocalPosition: {x: -6.34, y: 0, z: -16.21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1061,6 +1067,12 @@ Transform:
   m_Father: {fileID: 1235961216}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &383650382 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4275092978563669407, guid: 0e6bbf54548fed1dba75b7f39b49f146,
+    type: 3}
+  m_PrefabInstance: {fileID: 1132468398}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &450764357
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7484,6 +7496,12 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 555071384}
     m_Modifications:
+    - target: {fileID: 2507941915768603494, guid: 0e6bbf54548fed1dba75b7f39b49f146,
+        type: 3}
+      propertyPath: requiredKey
+      value: 
+      objectReference: {fileID: 11400000, guid: 2ef3e96e84783d3899fe3a3501a9733c,
+        type: 2}
     - target: {fileID: 4275092978563669400, guid: 0e6bbf54548fed1dba75b7f39b49f146,
         type: 3}
       propertyPath: m_RootOrder
@@ -7726,6 +7744,12 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 555071384}
     m_Modifications:
+    - target: {fileID: 2507941915768603494, guid: 0e6bbf54548fed1dba75b7f39b49f146,
+        type: 3}
+      propertyPath: requiredKey
+      value: 
+      objectReference: {fileID: 11400000, guid: ec0283aad9092d6deb99c888c40e179e,
+        type: 2}
     - target: {fileID: 4275092978563669400, guid: 0e6bbf54548fed1dba75b7f39b49f146,
         type: 3}
       propertyPath: m_RootOrder
@@ -8853,6 +8877,12 @@ Transform:
   m_Father: {fileID: 1840873259}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1160991280 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4275092978563669407, guid: 0e6bbf54548fed1dba75b7f39b49f146,
+    type: 3}
+  m_PrefabInstance: {fileID: 1324571648}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1206473452
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8921,6 +8951,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8810990849095919945, guid: b3e13351c8fddaeed87b3f54c184f4e7,
+        type: 3}
+      propertyPath: managedReferences[-2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8810990849095919945, guid: b3e13351c8fddaeed87b3f54c184f4e7,
+        type: 3}
+      propertyPath: pressables.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8810990849095919945, guid: b3e13351c8fddaeed87b3f54c184f4e7,
+        type: 3}
+      propertyPath: pressables.Array.data[0]
+      value: 
+      objectReference: {fileID: 1160991280}
+    - target: {fileID: 8810990849095919945, guid: b3e13351c8fddaeed87b3f54c184f4e7,
+        type: 3}
+      propertyPath: pressables.Array.data[1]
+      value: 
+      objectReference: {fileID: 383650382}
+    - target: {fileID: 8810990849095919945, guid: b3e13351c8fddaeed87b3f54c184f4e7,
+        type: 3}
+      propertyPath: pressables.Array.data[2]
+      value: 
+      objectReference: {fileID: 25631136}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: b3e13351c8fddaeed87b3f54c184f4e7, type: 3}
@@ -9019,7 +9074,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f42f4fd9be4cc21d9d0dd829f326f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: ec0283aad9092d6deb99c888c40e179e, type: 2}
+  data: {fileID: 11400000, guid: 2ef3e96e84783d3899fe3a3501a9733c, type: 2}
 --- !u!1 &1271912524
 GameObject:
   m_ObjectHideFlags: 0
@@ -9138,6 +9193,11 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 696588498}
     m_Modifications:
+    - target: {fileID: 2507941915768603494, guid: 0e6bbf54548fed1dba75b7f39b49f146,
+        type: 3}
+      propertyPath: open
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4275092978563669400, guid: 0e6bbf54548fed1dba75b7f39b49f146,
         type: 3}
       propertyPath: m_RootOrder
@@ -9702,6 +9762,12 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 555071384}
     m_Modifications:
+    - target: {fileID: 2507941915768603494, guid: 0e6bbf54548fed1dba75b7f39b49f146,
+        type: 3}
+      propertyPath: requiredKey
+      value: 
+      objectReference: {fileID: 11400000, guid: 20802a96d75cb9ff08276bd626e9b2ce,
+        type: 2}
     - target: {fileID: 4275092978563669400, guid: 0e6bbf54548fed1dba75b7f39b49f146,
         type: 3}
       propertyPath: m_RootOrder
@@ -9784,6 +9850,11 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1840873259}
     m_Modifications:
+    - target: {fileID: 2507941915768603494, guid: 0e6bbf54548fed1dba75b7f39b49f146,
+        type: 3}
+      propertyPath: open
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4275092978563669400, guid: 0e6bbf54548fed1dba75b7f39b49f146,
         type: 3}
       propertyPath: m_RootOrder
@@ -16303,7 +16374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f42f4fd9be4cc21d9d0dd829f326f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: ec0283aad9092d6deb99c888c40e179e, type: 2}
+  data: {fileID: 11400000, guid: 20802a96d75cb9ff08276bd626e9b2ce, type: 2}
 --- !u!1001 &1914976550
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16892,6 +16963,12 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1094192422}
     m_Modifications:
+    - target: {fileID: 2507941915768603494, guid: 0e6bbf54548fed1dba75b7f39b49f146,
+        type: 3}
+      propertyPath: requiredKey
+      value: 
+      objectReference: {fileID: 11400000, guid: 9733b3ea99b31fd7cb3119f60c0fae13,
+        type: 2}
     - target: {fileID: 4275092978563669400, guid: 0e6bbf54548fed1dba75b7f39b49f146,
         type: 3}
       propertyPath: m_RootOrder
@@ -17188,6 +17265,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8810990849095919945, guid: b3e13351c8fddaeed87b3f54c184f4e7,
+        type: 3}
+      propertyPath: pressables.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8810990849095919945, guid: b3e13351c8fddaeed87b3f54c184f4e7,
+        type: 3}
+      propertyPath: pressables.Array.data[0]
+      value: 
+      objectReference: {fileID: 1160991280}
+    - target: {fileID: 8810990849095919945, guid: b3e13351c8fddaeed87b3f54c184f4e7,
+        type: 3}
+      propertyPath: pressables.Array.data[1]
+      value: 
+      objectReference: {fileID: 383650382}
+    - target: {fileID: 8810990849095919945, guid: b3e13351c8fddaeed87b3f54c184f4e7,
+        type: 3}
+      propertyPath: pressables.Array.data[2]
+      value: 
+      objectReference: {fileID: 25631136}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: b3e13351c8fddaeed87b3f54c184f4e7, type: 3}
