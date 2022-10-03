@@ -86,7 +86,7 @@ MonoBehaviour:
   impulseStrength: 16.34
   height: 0.9
   offset: 0.72
-  projectileLifetime: 5
+  projectileLifetime: 1.5
   projectileRotationImpulse: 5
   audioSource: {fileID: 6718657284204885830}
 --- !u!1 &704727460

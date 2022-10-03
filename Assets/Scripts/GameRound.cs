@@ -48,7 +48,9 @@ public class GameRound : MonoBehaviour
         }
         else if (roundTime > maxRoundTime + teleportTime)
         {
-            playerPos.position = playerCollider.lastTeleportPosition;
+            var rb = playerPos.gameObject.GetComponent<Rigidbody>();
+            rb.position = playerCollider.lastTeleportPosition;
+            // playerPos.position = playerCollider.lastTeleportPosition;
         }
         else if (roundTime > maxRoundTime)
         {
