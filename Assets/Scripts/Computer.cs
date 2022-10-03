@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Computer : MonoBehaviour, Pressable
 {
+    public AudioMixer mixer;
     public bool end;
     public void Press()
     {
@@ -14,5 +17,13 @@ public class Computer : MonoBehaviour, Pressable
             });
         }
         
+    }
+
+    private void Update()
+    {
+        if (end)
+        {
+            mixer.FindSnapshot("Off").TransitionTo(15);
+        }
     }
 }
