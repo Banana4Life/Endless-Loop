@@ -10,6 +10,10 @@ public class DoorControl : MonoBehaviour, Pressable
     public float cd = 1;
     private float _cdTimer;
     public bool randomOpen;
+
+    public AudioSource closeAudioSource;
+    public AudioSource openAudioSource;
+    public AudioSource useKeyCardAudioSource;
     private void Start()
     {
         if (randomOpen)
@@ -31,6 +35,20 @@ public class DoorControl : MonoBehaviour, Pressable
         if (open != isOpen)
         {
             _animator.SetBool("IsOpen", open);
+            playAudio();
+        }
+        
+    }
+
+    private void playAudio()
+    {
+        if (open)
+        {
+            openAudioSource.Play();
+        }
+        else
+        {
+            closeAudioSource.Play();
         }
     }
 
@@ -44,6 +62,8 @@ public class DoorControl : MonoBehaviour, Pressable
         _cdTimer = cd;
         open = !open;
         Debug.Log("Next Door State: " + open + " " + name);
+        playAudio();
+        playActivated();
         if (open)
         {
             if (autoclose > 0)
@@ -56,6 +76,7 @@ public class DoorControl : MonoBehaviour, Pressable
     public void CloseDoor()
     {
         open = false;
+        playAudio();
     }
 
     public void OnTriggerEnter(Collider other)
@@ -65,6 +86,13 @@ public class DoorControl : MonoBehaviour, Pressable
         {
             open = true;
             _animator.SetBool("IsOpen", open);
+            playAudio();
+            playActivated();
         }
+    }
+
+    private void playActivated()
+    {
+        useKeyCardAudioSource.Play();
     }
 }
