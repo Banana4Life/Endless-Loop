@@ -27062,7 +27062,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1609972060}
-  m_LocalRotation: {x: 0.23519197, y: -0.3700757, z: 0.09741972, w: 0.89344174}
+  m_LocalRotation: {x: 0.23519196, y: -0.37007567, z: 0.09741971, w: 0.89344174}
   m_LocalPosition: {x: 199.82, y: 160.27, z: -200.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -32817,7 +32817,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1708806996}
-  m_LocalRotation: {x: 0.23519197, y: -0.3700757, z: 0.09741972, w: 0.89344174}
+  m_LocalRotation: {x: 0.23519196, y: -0.37007567, z: 0.09741971, w: 0.89344174}
   m_LocalPosition: {x: 199.82, y: 160.27, z: -200.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -38937,6 +38937,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6418031862814969945, guid: b3e13351c8fddaeed87b3f54c184f4e7,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 69f0aa3aeda2eb948accb2b04b35676a, type: 2}
     - target: {fileID: 7342937393669131464, guid: b3e13351c8fddaeed87b3f54c184f4e7,
         type: 3}
       propertyPath: pressables.Array.size
@@ -39336,6 +39341,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6418031862814969945, guid: b3e13351c8fddaeed87b3f54c184f4e7,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f2977390946cdbf8baab06efe88c6ac6, type: 2}
     - target: {fileID: 7342937393669131464, guid: b3e13351c8fddaeed87b3f54c184f4e7,
         type: 3}
       propertyPath: pressables.Array.size
@@ -45325,6 +45335,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6418031862814969945, guid: b3e13351c8fddaeed87b3f54c184f4e7,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c533a1f541329ca858352b38d780c4ed, type: 2}
     - target: {fileID: 7342937393669131464, guid: b3e13351c8fddaeed87b3f54c184f4e7,
         type: 3}
       propertyPath: pressables.Array.size
