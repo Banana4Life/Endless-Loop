@@ -2,11 +2,17 @@ using UnityEngine;
 
 public class Computer : MonoBehaviour, Pressable
 {
+    private bool end;
     public void Press()
     {
-        Camera.main.GetComponent<EndFadeout>().Fadeout(() =>
+        if (!end)
         {
-            // TODO end?
-        });
+            end = true;
+            Camera.main.GetComponent<EndFadeout>().Fadeout(() =>
+            {
+                // TODO end?
+            });
+        }
+        
     }
 }
