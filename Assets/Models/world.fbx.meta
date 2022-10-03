@@ -12,6 +12,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: HoleWall
+    second: {fileID: 2100000, guid: 06b0883be123ef0a69d42de80bf0d24a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Nothing
     second: {fileID: 2100000, guid: 6949667cec67bce739cfbb9e07284962, type: 2}
   - first:
