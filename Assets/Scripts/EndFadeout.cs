@@ -40,6 +40,8 @@ public class EndFadeout : MonoBehaviour
         _mixer.blueOutBlueIn.value = 100;
         
         _mixer.active = true;
+
+        _onComplete = onComplete;
     }
 
     private void Update()
