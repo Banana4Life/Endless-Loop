@@ -13662,6 +13662,12 @@ Transform:
   m_Father: {fileID: 696588498}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1050345560 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6718657284204885830, guid: 3b3898ad227665821981117d4e669ae3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1894229063910303326}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1059450343
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48855,6 +48861,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3332185825316534865, guid: 3b3898ad227665821981117d4e669ae3,
+        type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 1050345560}
+    - target: {fileID: 8799118346259871883, guid: 3b3898ad227665821981117d4e669ae3,
+        type: 3}
+      propertyPath: maxRoundTime
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

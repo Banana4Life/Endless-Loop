@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Dissolver : MonoBehaviour
@@ -18,6 +14,8 @@ public class Dissolver : MonoBehaviour
     
     public int undissolveSpeed = 300;
     public int dissolveSpeed = 200;
+    public AudioSource audioSource;
+    public bool dissolve;
 
 
     // Start is called before the first frame update
@@ -64,14 +62,24 @@ public class Dissolver : MonoBehaviour
 
     public void StartDissolve()
     {
-        if (_dissolveSpeed == 0)
+        if (!dissolve)
         {
-            _dissolveSpeed = dissolveSpeed;
+            dissolve = true;
+            if (_dissolveSpeed == 0)
+            {
+                _dissolveSpeed = dissolveSpeed;
+                audioSource.Play();
+            }
         }
     }
 
     public void StartUnDissolve()
     {
-        _dissolveSpeed = -undissolveSpeed;
+        if (dissolve)
+        {
+            _dissolveSpeed = -undissolveSpeed;
+            dissolve = false;
+            audioSource.Play();    
+        }
     }
 }

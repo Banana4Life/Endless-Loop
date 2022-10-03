@@ -13,6 +13,7 @@ public class ShotBouncyBall : MonoBehaviour
     private GameObject _projectile = null;
     public float projectileLifetime = 5f;
     public float projectileRotationImpulse = 5f;
+    public AudioSource audioSource;
 
     // Update is called once per frame
     void Update()
@@ -49,6 +50,8 @@ public class ShotBouncyBall : MonoBehaviour
             var body = _projectile.GetComponentInChildren<Rigidbody>();
             body.AddForce(forward * impulseStrength, ForceMode.Impulse);
             body.AddTorque(Vector3.up * projectileRotationImpulse, ForceMode.Impulse);
+            
+            audioSource.Play();
             
             Invoke(nameof(KillProjectile), projectileLifetime);
         }
