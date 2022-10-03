@@ -1,21 +1,27 @@
+using System;
 using UnityEngine;
 
 public class PickupObject : MonoBehaviour
 {
     public PickupData data;
-    private GameObject _model;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        _model = Instantiate(data.model, transform);
-        _model.GetComponent<Collider>().isTrigger = true;
-        var listener = _model.AddComponent<TriggerListener>();
-        listener.Init(data);
-    }
+    public GameObject model;
 
     private void Update()
     {
-        _model.transform.Rotate(Vector3.up, Time.deltaTime * 10);
+        model.transform.Rotate(Vector3.up, Time.deltaTime * 10);
+    }
+
+    public void RecreateModel()
+    {
+        foreach (var collider in GetComponentsInChildren<ColliderPickup>())
+        {
+            DestroyImmediate(collider.gameObject);
+        }
+
+        model = Instantiate(data.model, transform);
+        model.name = "Model (auto)";
+        model.GetComponent<Collider>().isTrigger = true;
+        var listener = model.AddComponent<ColliderPickup>();
+        listener.Init(data);
     }
 }

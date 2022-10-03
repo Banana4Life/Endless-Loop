@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TriggerListener : MonoBehaviour
+public class ColliderPickup : MonoBehaviour
 {
     private PickupData _data;
 
