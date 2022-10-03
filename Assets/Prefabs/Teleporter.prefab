@@ -32,8 +32,9 @@ Transform:
   - {fileID: 2704537786228387595}
   - {fileID: 4660373902157491609}
   - {fileID: 5923307195694894202}
+  - {fileID: 4193267747755517709}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &2078799542525190873
 Rigidbody:
@@ -4963,6 +4964,56 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -2432090755550338912, guid: 4be9d0b80c0790c478286f3bccfd49c8, type: 3}
+--- !u!1 &6727878930546623610
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4193267747755517709}
+  - component: {fileID: 1527474265091951048}
+  m_Layer: 0
+  m_Name: Light Probe Group
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4193267747755517709
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6727878930546623610}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2884133052285653098}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!220 &1527474265091951048
+LightProbeGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6727878930546623610}
+  m_Enabled: 1
+  m_SourcePositions:
+  - {x: -1.179735, y: 1.3814473, z: -0.047189593}
+  - {x: 0, y: 1.3814473, z: -1.1561401}
+  - {x: 1.2269244, y: 1.3814473, z: 0.047189355}
+  - {x: 0, y: 1.3814473, z: 1.2033294}
+  - {x: -1.179735, y: 0.26268864, z: -0.047189593}
+  - {x: 0, y: 0.26268864, z: -1.1561401}
+  - {x: 1.2269244, y: 0.26268864, z: 0.047189355}
+  - {x: 0, y: 0.26268864, z: 1.2033294}
+  m_Dering: 1
 --- !u!1 &7573417997622815995
 GameObject:
   m_ObjectHideFlags: 0
