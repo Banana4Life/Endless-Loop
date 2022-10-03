@@ -89,6 +89,7 @@ MonoBehaviour:
   projectileLifetime: 1.5
   projectileRotationImpulse: 5
   audioSource: {fileID: 6718657284204885830}
+  weaponItem: {fileID: 11400000, guid: 30d9b2295089fc1ff97a4237cc697a7f, type: 2}
 --- !u!1 &704727460
 GameObject:
   m_ObjectHideFlags: 0

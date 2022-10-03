@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -14,10 +15,20 @@ public class ShotBouncyBall : MonoBehaviour
     public float projectileLifetime = 5f;
     public float projectileRotationImpulse = 5f;
     public AudioSource audioSource;
+    private PlayerCollider _playerCollider;
+    public PickupData weaponItem;
+    private void Start()
+    {
+        _playerCollider = GetComponent<PlayerCollider>();
+    }
 
     // Update is called once per frame
     void Update()
     {
+        if (!_playerCollider.itemsInInventory.Contains(weaponItem))
+        {
+            return;
+        }
         bool shoot;
         var shootKeyDown = Input.GetButtonDown("Fire1");
         if (shootKeyDown && _didShoot)
