@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ButtonTrigger : MonoBehaviour
 {
-    public string triggerTag = "player";
+    public string triggerTag = "Player";
     public GameObject[] pressables;
     public void OnTriggerEnter(Collider other)
     {

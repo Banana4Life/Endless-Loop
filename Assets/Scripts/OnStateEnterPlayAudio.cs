@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayOnStart : StateMachineBehaviour
+public class OnStateEnterPlayAudio : StateMachineBehaviour
 {
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {

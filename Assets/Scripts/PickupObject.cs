@@ -1,27 +1,40 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
 public class PickupObject : MonoBehaviour
 {
     public PickupData data;
-    public GameObject model;
+    private GameObject model;
+
+    private void Start()
+    {
+        model = GetComponentInChildren<ColliderPickup>().gameObject;
+    }
 
     private void Update()
     {
         model.transform.Rotate(Vector3.up, Time.deltaTime * 10);
     }
 
-    public void RecreateModel()
+    public GameObject RecreateModel(bool immediate = true)
     {
         foreach (var collider in GetComponentsInChildren<ColliderPickup>())
         {
-            DestroyImmediate(collider.gameObject);
+            if (immediate)
+            {
+                DestroyImmediate(collider.gameObject);
+            }
+            else
+            {
+                Destroy(collider.gameObject);
+            }
+
         }
 
         model = Instantiate(data.model, transform);
         model.name = "Model (auto)";
-        model.GetComponent<Collider>().isTrigger = true;
-        var listener = model.AddComponent<ColliderPickup>();
-        listener.Init(data);
+        model.AddComponent<ColliderPickup>().Init(data);
+        return model;
     }
 }

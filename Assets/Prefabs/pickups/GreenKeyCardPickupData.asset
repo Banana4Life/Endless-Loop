@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: greenKeyCard
   model: {fileID: 8298331226076796391, guid: e89ccde528a83060ea24f0650370d894, type: 3}
+  audio: PickupGreenKeyCard

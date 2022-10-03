@@ -2,20 +2,26 @@ using UnityEngine;
 
 public class ColliderPickup : MonoBehaviour
 {
-    private PickupData _data;
+    public PickupData data;
+    public AudioSource pickupAudio;
 
     void OnTriggerEnter(Collider other)
     {
         var player = other.gameObject.GetComponent<PlayerCollider>();
         if (player)
         {
-            player.Pickup(_data);
+            player.Pickup(data);
             Destroy(transform.parent.gameObject);
+            if (pickupAudio)
+            {
+                pickupAudio.Play();
+            }
         }
     }
 
     public void Init(PickupData data)
     {
-        _data = data;
+        pickupAudio = data.model.GetComponent<AudioSource>();
+        this.data = data;
     }
 }

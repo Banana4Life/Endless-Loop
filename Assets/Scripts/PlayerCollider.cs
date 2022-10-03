@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +8,7 @@ public class PlayerCollider : MonoBehaviour
     private static readonly int HoldingWeaponProperty = Animator.StringToHash("Holding Weapon");
     public List<PickupData> itemsInInventory = new();
     public PickupData dashItem;
+    public GameObject pickupAudioSources;
 
     public bool canDash()
     {
@@ -30,6 +30,11 @@ public class PlayerCollider : MonoBehaviour
                 break;
         }
         itemsInInventory.Add(data);
+        var found = pickupAudioSources.transform.Find(data.itemName);
+        if (found)
+        {
+            found.GetComponent<AudioSource>().Play();
+        }
         Debug.Log("Picked up " + data.itemName);
     }
 }

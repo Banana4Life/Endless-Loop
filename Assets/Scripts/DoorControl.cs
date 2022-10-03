@@ -24,6 +24,7 @@ public class DoorControl : MonoBehaviour, Pressable
     public void Press()
     {
         open = !open;
+        Debug.Log("Next Door State: " + open + " " + name);
     }
 
     public void OnTriggerEnter(Collider other)

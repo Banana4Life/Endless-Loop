@@ -28,11 +28,6 @@ public class GameRound : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        foreach (var placeholder in GameObject.FindGameObjectsWithTag("placeholder"))
-        {
-            Destroy(placeholder);
-        }
-
         playerControlled.EnableMovement();
     }
 

@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37c857d84ea04f529046074535c7213e, type: 3}
   m_Name: BlueKeyCardPickupData
   m_EditorClassIdentifier: 
-  itemName: greenKeyCard
+  itemName: blueKeyCard
   model: {fileID: 8298331226076796391, guid: 97df902881569f7f1b588e763abc4567, type: 3}
+  audio: PickupBlueKeyCard
