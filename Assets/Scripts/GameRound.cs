@@ -24,6 +24,8 @@ public class GameRound : MonoBehaviour
 
     private Volume volume;
 
+    public Computer computer;
+
     
     // Start is called before the first frame update
     void Start()
@@ -34,6 +36,10 @@ public class GameRound : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+         if (computer.end)
+         {
+             return;
+         }
         PlayTikTokSound();
         roundTime += Time.deltaTime;
 

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Computer : MonoBehaviour, Pressable
 {
-    private bool end;
+    public bool end;
     public void Press()
     {
         if (!end)

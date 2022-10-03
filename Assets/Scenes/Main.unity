@@ -5308,6 +5308,18 @@ AudioSource:
     type: 3}
   m_PrefabInstance: {fileID: 1894229063910303326}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1070891817 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3123069585614445846, guid: 0d4becf3e3330d1f8aa1105569b23f1e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1220666003896175458}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c50975196b738a4580cbd68a9e51d87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1372551602
 GameObject:
   m_ObjectHideFlags: 3
@@ -10668,6 +10680,11 @@ PrefabInstance:
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 1050345560}
+    - target: {fileID: 8799118346259871883, guid: 3b3898ad227665821981117d4e669ae3,
+        type: 3}
+      propertyPath: computer
+      value: 
+      objectReference: {fileID: 1070891817}
     - target: {fileID: 8799118346259871883, guid: 3b3898ad227665821981117d4e669ae3,
         type: 3}
       propertyPath: maxRoundTime
